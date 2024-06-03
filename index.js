@@ -1,9 +1,11 @@
 function updateClock(){
     const now = new Date();
-    const hour = now.getHours();
+    let hour = now.getHours();
+    const ampm = hour >=12 ? "PM": "AM";
+    hour = hour%12 || 12;
     const min  = now.getMinutes();
     const sec = now.getSeconds();
-    const timeString = `${hour}:${min}:${sec}`;
+    const timeString = `${hour}:${min}:${sec} ${ampm}`;
 
     document.getElementById("clock").textContent = timeString;
 
@@ -11,3 +13,4 @@ function updateClock(){
 }
 
 updateClock();
+setInterval(updateClock, 1000);
